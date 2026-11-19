@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA VI Trophy Guide &amp; Tracker — 55 Trophies to Platinum</title>
+<meta name="description" content="Complete GTA VI trophy guide and tracker: all 55 trophies, road to platinum, missables, and per-trophy guidance with sources. Fully offline.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Grand Theft Auto VI · Leonida · Offline Trophy Guide</p>
+    <h1>GTA VI <span>Trophy Guide</span> &amp; Tracker</h1>
+    <p class="lede">All <strong>55 trophies</strong> — 1 Platinum, 2 Gold, 6 Silver, 46 Bronze. One playthrough, ~200 hours, 4/10 difficulty, no online trophies. Track your progress, plan the road to Platinum, and read the guidance for every trophy with its source.</p>
+    <div class="stats" id="statStrip">
+      <div class="stat"><strong id="statTotal">55</strong><span>trophies</span></div>
+      <div class="stat"><strong id="statEarned">0</strong><span>earned</span></div>
+      <div class="stat"><strong id="statPct">0%</strong><span>platinum progress</span></div>
+      <div class="stat"><strong id="statPlat">~200h</strong><span>to platinum</span></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+    <div class="hero-controls">
+      <label class="toggle"><input type="checkbox" id="spoilerToggle"> <span>Spoiler-safe mode — hide story trophies until earned</span></label>
+      <button class="btn btn-ghost" id="exportBtn" type="button">Export progress</button>
+      <button class="btn btn-ghost" id="importBtn" type="button">Import progress</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn btn-ghost danger" id="resetBtn" type="button">Reset all</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab active" role="tab" data-tab="tracker" aria-selected="true">Tracker</button>
+    <button class="tab" role="tab" data-tab="roadmap" aria-selected="false">Road to Platinum</button>
+    <button class="tab" role="tab" data-tab="about" aria-selected="false">About &amp; sources</button>
+  </nav>
+
+  <section id="tab-tracker" class="panel" role="tabpanel">
+    <div class="filters">
+      <input type="search" id="searchBox" placeholder="Search trophies by name…" aria-label="Search trophies">
+      <select id="kindFilter" aria-label="Filter by category">
+        <option value="all">All categories</option>
+        <option value="story">Story</option>
+        <option value="side">Side characters</option>
+        <option value="collectible">Collectibles</option>
+        <option value="activity">Activities</option>
+        <option value="robbery">Robberies</option>
+        <option value="money">Money</option>
+        <option value="explore">Explore</option>
+        <option value="misc">Misc</option>
+      </select>
+      <select id="gradeFilter" aria-label="Filter by grade">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="all">All statuses</option>
+        <option value="earned">Earned</option>
+        <option value="not">Not earned</option>
+        <option value="missable">Missable</option>
+      </select>
+    </div>
+    <p class="count-line" id="countLine">Showing 55 of 55 trophies.</p>
+    <div class="trophy-list" id="trophyList"></div>
+  </section>
+
+  <section id="tab-roadmap" class="panel hidden" role="tabpanel">
+    <div class="roadmap-head">
+      <h2 id="roadmapTitle">Road to the Platinum</h2>
+      <div class="fact-grid" id="factGrid"></div>
+    </div>
+    <div class="missable-box" id="missableBox">
+      <h3>⚠ The one potentially missable trophy</h3>
+      <div id="missableList"></div>
+    </div>
+    <ol class="steps" id="stepsList"></ol>
+    <div class="notes-box">
+      <h3>Things that look missable but are not</h3>
+      <ul id="notesList"></ul>
+    </div>
+  </section>
+
+  <section id="tab-about" class="panel hidden" role="tabpanel">
+    <h2>About this guide</h2>
+    <p>This is an unofficial, fan-made trophy guide and tracker for <strong>Grand Theft Auto VI</strong>. It is not affiliated with Rockstar Games, PlayStation, or Take-Two Interactive. All trophy names, descriptions and grades are official data, used for reference. No Rockstar artwork, logos or game assets are included — everything here is original text and code.</p>
+    <h3>How the guidance was written</h3>
+    <ul>
+      <li>Every trophy has a guide in the author's own words — how to do it, where, and when it can be missed.</li>
+      <li>Guidance is sourced from published guides (PowerPyx, PlayStationTrophies.org, PSNProfiles, TrueTrophies, Exophase) and cross-checked against the official trophy descriptions. No other guide's text was copied.</li>
+      <li>4 trophies had <strong>no public guide at all</strong> when this was built (GTA VI launched 19 November 2026). They are marked honestly as “No public guide yet” instead of guessing — see the list below.</li>
+      <li>The tracker stores your progress in your browser's localStorage only. Nothing leaves your device. Export / Import moves progress as a JSON file.</li>
+    </ul>
+    <h3>Trophies with no public guide yet (4)</h3>
+    <ul id="unknownList"></ul>
+    <h3>Sources</h3>
+    <ul id="sourceList"></ul>
+    <p class="fine">Built as an entry for the make.fun competition “GTA 6 Trophy Guide”. Data: official trophy list via planetgta6.com / Exophase / PSNProfiles. Guidance: PowerPyx GTA 6 Trophy Guide &amp; Roadmap, cross-checked against PlayStationTrophies.org, PSNProfiles, TrueTrophies and Exophase where available.</p>
+  </section>
+</main>
+
+<aside class="detail-panel hidden" id="detailPanel" aria-label="Trophy detail">
+  <button class="detail-close" id="detailClose" type="button" aria-label="Close detail">×</button>
+  <div id="detailBody"></div>
+</aside>
+
+<footer>
+  <p>Unofficial fan guide. GTA, Grand Theft Auto and Rockstar are trademarks of Take-Two Interactive. Progress is stored only in your browser.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
